@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Processing</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Image Processing Tabs</h1>
+    <ul>
+        <li><a href="{% url 'process_image' tab_id=1 %}">Process Image 1</a></li>
+        <li><a href="{% url 'process_image' tab_id=2 %}">Process Image 2</a></li>
+        <li><a href="{% url 'process_image' tab_id=3 %}">Process Image 3</a></li>
+    </ul>
+    {% if original %}
+        <div>
+            <h2>Original Image</h2>
+            <img src="{{ original }}" alt="Original Image">
+        </div>
+        <div id="processedImageSection">
+            <h2>Processed Image <button onclick="toggleProcessed()">Toggle</button></h2>
+            <img id="processedImage" src="{{ processed }}" alt="Processed Image" style="display:none;">
+        </div>
+    {% endif %}
+    <script>
+        function toggleProcessed() {
+            var x = document.getElementById("processedImage");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
